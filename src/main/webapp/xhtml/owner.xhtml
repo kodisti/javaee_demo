@@ -10,6 +10,7 @@
 </h:head>
 <body>
 <h:form id="form">
+    <ui:include src="appMenu.xhtml"/>
     <p:growl id="growl" showDetail="false"/>
 
     <p:commandButton id="add" icon="pi pi-plus" process="@this" value="Új hozzáadása"
@@ -50,8 +51,10 @@
         </p:column>
         <p:column sortBy="#{owner.registrationDate}" filterBy="#{owner.registrationDate}" filterMatchMode="contains"
                   headerText="Regisztráció dátuma">
-            <!--todo dátum formázás-->
-            <h:outputText value="#{owner.registrationDate}"/>
+
+            <h:outputText value="#{owner.registrationDate}">
+                <f:convertDateTime pattern="yyyy-MM-dd"/>
+            </h:outputText>
         </p:column>
 
         <p:column headerText="Funkció gombok" exportable="false">
