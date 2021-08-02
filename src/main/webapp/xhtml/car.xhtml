@@ -57,6 +57,10 @@
                   headerText="Rendszám">
             <h:outputText value="#{car.licensePlateNumber}"/>
         </p:column>
+        <p:column sortBy="#{car.owner.id}" filterBy="#{car.owner.id}" filterMatchMode="contains"
+                  headerText="Tulajdonos">
+            <h:outputText value="#{car.owner.lastName} #{car.owner.firstName}"/>
+        </p:column>
         <p:column headerText="Funkció gombok" exportable="false">
             <p:commandButton id="delete" icon="pi pi-times" process="@this" value="Törlés"
                              actionListener="#{carCRUDMbean.remove(car)}"
