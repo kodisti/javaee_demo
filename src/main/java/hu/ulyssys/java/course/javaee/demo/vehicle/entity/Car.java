@@ -2,9 +2,16 @@ package hu.ulyssys.java.course.javaee.demo.vehicle.entity;
 
 import javax.persistence.*;
 
+@NamedQueries({
+        @NamedQuery(name = Car.FIND_ALL, query = "select c from Car c order by c.id"),
+        @NamedQuery(name = Car.FIND_BY_ID, query = "select c from Car c where c.id=:id"),
+})
 @Entity
 @Table
 public class Car extends AbstractVehicle {
+
+    public static final String FIND_ALL = "Car.findAll";
+    public static final String FIND_BY_ID = "Car.findById";
 
     @Column(name = "license_plate_number")
     private String licensePlateNumber;

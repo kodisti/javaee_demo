@@ -6,6 +6,7 @@ import hu.ulyssys.java.course.javaee.demo.vehicle.entity.Car;
 import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @ApplicationScoped
@@ -16,12 +17,14 @@ public class CarDAOImpl implements CarDAO {
 
     @Override
     public List<Car> findAll() {
-        return entityManager.createQuery("select c from Car c order by c.id", Car.class).getResultList();
+        return entityManager.createNamedQuery(Car.FIND_ALL, Car.class).getResultList();
     }
 
     @Override
     public Car findById(Long id) {
-        return entityManager.find(Car.class, id);
+        TypedQuery<Car> carTypedQuery = entityManager.createNamedQuery(Car.FIND_BY_ID, Car.class);
+        carTypedQuery.setParameter("id", id);
+        return carTypedQuery.getSingleResult();
     }
 
     @Override
