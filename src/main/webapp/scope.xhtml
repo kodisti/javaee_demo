@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+      xml:lang="en" lang="en">
+<head>
+    <title>Scope demo</title>
+</head>
+<body>
+<h:form>
+    <!-- ViewScope -->
+    <h:outputText id="viewScopeValue" value="view scope értéke #{demoViewScopedMBean.count}"/>
+    <h:commandButton value="View Scope Gomb" actionListener="#{demoViewScopedMBean.addToCount()}">
+        <f:ajax render="viewScopeValue"/>
+    </h:commandButton>
+    <br/>
+    <!-- SessionScope-->
+    <h:outputText id="sessioneScopeValue" value="session scope értéke #{demoSessionScopedMBean.count}"/>
+    <h:commandButton value="Session Scope Gomb" actionListener="#{demoSessionScopedMBean.addToCount()}">
+        <f:ajax render="sessioneScopeValue"/>
+    </h:commandButton>
+    <br/>
+    <!-- ApplicationScope -->
+    <h:outputText id="applicationScopeValue" value="application scope értéke #{demoApplicationScopedMBean.count}"/>
+    <h:commandButton value="Application Scope Gomb" actionListener="#{demoApplicationScopedMBean.addToCount()}">
+        <f:ajax render="applicationScopeValue"/>
+    </h:commandButton>
+    <br/>
+    <!-- RequestScope-->
+    <h:outputText id="requestScopeValue" value="request scope értéke #{demoRequestScopedMBean.count}"/>
+    <h:commandButton value="Request Scope Gomb" actionListener="#{demoRequestScopedMBean.addToCount()}">
+        <f:ajax render="requestScopeValue"/>
+    </h:commandButton>
+</h:form>
+
+</body>
+</html>

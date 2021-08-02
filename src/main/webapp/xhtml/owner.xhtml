@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
+      xml:lang="en" lang="en">
+<h:head>
+    <title>CAR demo</title>
+</h:head>
+<body>
+<h:form id="form">
+    <p:growl id="growl" showDetail="false"/>
+
+    <p:commandButton id="add" icon="pi pi-plus" process="@this" value="Új hozzáadása"
+                     actionListener="#{ownerCRUDMbean.initSave}" update="@form"/>
+    <p:commandButton id="columntTogglerBtn" icon="pi pi-table"/>
+    <p:columnToggler trigger="columntTogglerBtn" datasource="table"/>
+
+    <p:commandButton value="XLS" styleClass="p-mr-2 p-mb-2">
+        <p:dataExporter type="xls" target="table" fileName="export"/>
+    </p:commandButton>
+
+    <p:commandButton value="XLXS" styleClass="p-mr-2 p-mb-2">
+        <p:dataExporter type="xlsxstream" target="table" fileName="export"/>
+    </p:commandButton>
+
+    <!-- TODO Utf-8 karakter -->
+    <p:commandButton value="PDF" styleClass="p-mr-2 p-mb-2">
+        <p:dataExporter type="pdf" target="table" fileName="export"/>
+    </p:commandButton>
+
+    <p:dataTable id="table" value="#{ownerCRUDMbean.list}" var="owner" rows="10"
+                 paginator="true"
+                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                 rowsPerPageTemplate="5,10,{ShowAll|'All'}">
+        <p:column style="width:2rem" exportable="false">
+            <p:rowToggler/>
+        </p:column>
+        <p:column toggleable="false" sortBy="#{owner.id}" filterBy="#{owner.id}" filterMatchMode="contains" headerText="ID">
+            <h:outputText value="#{owner.id}"/>
+        </p:column>
+        <p:column sortBy="#{owner.firstName}" filterBy="#{owner.firstName}" filterMatchMode="contains" headerText="Keresztnév">
+            <h:outputText value="#{owner.firstName}"/>
+        </p:column>
+        <p:column sortBy="#{owner.lastName}" filterBy="#{owner.lastName}" filterMatchMode="contains"
+                  headerText="Vezetéknév">
+            <h:outputText value="#{owner.lastName}"/>
+        </p:column>
+        <p:column sortBy="#{owner.registrationDate}" filterBy="#{owner.registrationDate}" filterMatchMode="contains"
+                  headerText="Regisztráció dátuma">
+            <!--todo dátum formázás-->
+            <h:outputText value="#{owner.registrationDate}"/>
+        </p:column>
+
+        <p:column headerText="Funkció gombok" exportable="false">
+            <p:commandButton id="delete" icon="pi pi-times" process="@this" value="Törlés"
+                             actionListener="#{ownerCRUDMbean.remove(owner)}"
+                             update="@form">
+                <p:confirm header="Törlés" message="Biztos vagy benne?" icon="pi pi-times"/>
+            </p:commandButton>
+            <!-- Hákolt, de müködő megoldás @([id$=formPanel]) -->
+            <p:commandButton id="update" process="@this" value="Módosítás" icon="pi pi-pencil"
+                             actionListener="#{ownerCRUDMbean.initEdit(owner)}" update=":form:formPanelHolder"/>
+        </p:column>
+        <p:rowExpansion>
+            <div>
+               <!-- todo owner, autói, repcsijei és jhajói lástában-->
+            </div>
+        </p:rowExpansion>
+    </p:dataTable>
+
+    <p:outputPanel id="formPanelHolder">
+        <p:panelGrid layout="grid" columns="2" id="formPanel" style="width:400px" rendered="#{ownerCRUDMbean.inFunction}">
+            <p:outputLabel value="Keresztnév"/>
+            <p:inputText required="true" requiredMessage="Keresztnév kötelező"
+                         value="#{ownerCRUDMbean.selectedOwner.firstName}"/>
+
+            <p:outputLabel value="Vezetéknév"/>
+            <p:inputText required="true" requiredMessage="Vezetéknév kötelező" value="#{ownerCRUDMbean.selectedOwner.lastName}"/>
+
+            <p:outputLabel value="Regisztráció dátumna"/>
+            <p:calendar required="true" requiredMessage="Regisztráció dátuma kötelező"
+                         value="#{ownerCRUDMbean.selectedOwner.registrationDate}"/>
+
+            <p:commandButton value="#{msg['app.save']}" icon="pi pi-save" actionListener="#{ownerCRUDMbean.save()}"
+                             process="formPanel" update="@form">
+            </p:commandButton>
+        </p:panelGrid>
+    </p:outputPanel>
+
+
+    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+        <p:commandButton value="#{msg['no.label']}" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+        <p:commandButton value="#{msg['yes.label']}" type="button" styleClass="ui-confirmdialog-yes"/>
+    </p:confirmDialog>
+    <!-- űrlap, új felvitelre is, és ezt használni módosítás-->
+
+    <!-- 2. inplace edit plane-en -->
+    <!-- 3. Felugró ablakos űrlapot külön formmal -->
+    <!-- 4. nyelvesítés-->
+</h:form>
+
+</body>
+</html>

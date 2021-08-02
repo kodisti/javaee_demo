@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
+      xml:lang="en" lang="en">
+<h:head>
+    <title>SHIP demo</title>
+</h:head>
+<body>
+<h:form id="form">
+    <p:growl id="growl" showDetail="false"/>
+
+    <p:toolbar>
+        <p:toolbarGroup id="functionGroup">
+            <p:commandButton id="add" icon="pi pi-plus" process="@this" value="Új hozzáadása"
+                             actionListener="#{shipCRUDMbean.initSave}" update="@([id$=shipForm])"
+                             oncomplete="PF('shipDialog').show()"/>
+
+            <p:commandButton disabled="#{shipCRUDMbean.selectedShip.id==null}" id="delete" icon="pi pi-times"
+                             process="@this" value="Törlés"
+                             actionListener="#{shipCRUDMbean.remove}"
+                             update="@form">
+                <p:confirm header="Törlés" message="Biztos vagy benne?" icon="pi pi-times"/>
+            </p:commandButton>
+            <!-- Hákolt, de müködő megoldás @([id$=formPanel]) -->
+            <p:commandButton id="update" disabled="#{shipCRUDMbean.selectedShip.id==null}" process="@this"
+                             value="Módosítás" icon="pi pi-pencil" oncomplete="PF('shipDialog').show()"
+                             actionListener="#{shipCRUDMbean.initEdit}" update="@([id$=shipForm])"/>
+        </p:toolbarGroup>
+
+        <p:toolbarGroup id="utilGroup" align="right">
+            <p:commandButton id="columntTogglerBtn" icon="pi pi-table"/>
+            <p:columnToggler trigger="columntTogglerBtn" datasource="table"/>
+
+            <p:commandButton value="XLS" styleClass="p-mr-2 p-mb-2">
+                <p:dataExporter type="xls" target="table" fileName="export"/>
+            </p:commandButton>
+
+            <p:commandButton value="XLXS" styleClass="p-mr-2 p-mb-2">
+                <p:dataExporter type="xlsxstream" target="table" fileName="export"/>
+            </p:commandButton>
+
+            <p:commandButton value="PDF" styleClass="p-mr-2 p-mb-2">
+                <p:dataExporter type="pdf" target="table" fileName="export"/>
+            </p:commandButton>
+        </p:toolbarGroup>
+    </p:toolbar>
+
+
+    <p:dataTable id="table" value="#{shipCRUDMbean.list}" var="ship" rows="10"
+                 selectionMode="single" selection="#{shipCRUDMbean.selectedShip}" rowKey="#{ship.id}"
+                 paginator="true"
+                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                 rowsPerPageTemplate="5,10,{ShowAll|'All'}">
+        <p:ajax event="rowSelect" update="@form"/>
+        <p:column toggleable="false" sortBy="#{ship.id}" filterBy="#{ship.id}" filterMatchMode="contains"
+                  headerText="ID">
+            <h:outputText value="#{ship.id}"/>
+        </p:column>
+        <p:column sortBy="#{ship.type}" filterBy="#{ship.type}" filterMatchMode="contains" headerText="Típus">
+            <h:outputText value="#{ship.type}"/>
+        </p:column>
+        <p:column sortBy="#{ship.manufacturer}" filterBy="#{ship.manufacturer}" filterMatchMode="contains"
+                  headerText="Gyártó">
+            <h:outputText value="#{ship.manufacturer}"/>
+        </p:column>
+        <p:column sortBy="#{ship.licensePlateNumber}" filterBy="#{ship.licensePlateNumber}" filterMatchMode="contains"
+                  headerText="Rendszáma">
+            <h:outputText value="#{ship.licensePlateNumber}"/>
+        </p:column>
+        <p:rowExpansion>
+            <div>
+                A jármű típusa: #{ship.vehicleType}
+            </div>
+        </p:rowExpansion>
+    </p:dataTable>
+
+    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+        <p:commandButton value="Nem" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+        <p:commandButton value="Igen" type="button" styleClass="ui-confirmdialog-yes"/>
+    </p:confirmDialog>
+
+</h:form>
+
+<p:dialog id="shipDialog" widgetVar="shipDialog" header="Form" modal="true" closable="true">
+    <h:form id="shipForm">
+        <p:panelGrid layout="grid" columns="2" id="formPanel" style="width:400px"
+                     rendered="#{shipCRUDMbean.inFunction}">
+            <p:outputLabel value="Gyártó"/>
+            <p:inputText required="true" requiredMessage="Gyártó kötelező"
+                         value="#{shipCRUDMbean.selectedShip.manufacturer}"/>
+
+            <p:outputLabel value="Típus"/>
+            <p:inputText required="true" requiredMessage="Típus kötelező" value="#{shipCRUDMbean.selectedShip.type}"/>
+
+            <p:outputLabel value="Rendszám"/>
+            <p:inputText thousandSeparator="" decimalPlaces="0" required="true" requiredMessage="Utasok száma"
+                         value="#{shipCRUDMbean.selectedShip.licensePlateNumber}"/>
+            <p:outputLabel value="Ajtók száma"/>
+
+            <p:commandButton value="Mentés" icon="pi pi-save" actionListener="#{shipCRUDMbean.save()}"
+                             validateClient="true"
+                             process="formPanel" update=":form">
+            </p:commandButton>
+        </p:panelGrid>
+    </h:form>
+</p:dialog>
+</body>
+</html>
