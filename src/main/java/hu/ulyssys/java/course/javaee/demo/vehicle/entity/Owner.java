@@ -2,6 +2,8 @@ package hu.ulyssys.java.course.javaee.demo.vehicle.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "vehicle_owner")
@@ -16,6 +18,13 @@ public class Owner {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "registration_date")
     private Date registrationDate;
+
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
+    private Set<Car> cars;
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
+    private Set<Plane> planes;
+    @OneToMany(mappedBy = "owner", fetch = FetchType.EAGER)
+    private Set<Ship> ships;
 
     public Long getId() {
         return id;
@@ -47,6 +56,30 @@ public class Owner {
 
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
+    }
+
+    public Set<Car> getCars() {
+        return cars;
+    }
+
+    public void setCars(Set<Car> cars) {
+        this.cars = cars;
+    }
+
+    public Set<Plane> getPlanes() {
+        return planes;
+    }
+
+    public void setPlanes(Set<Plane> planes) {
+        this.planes = planes;
+    }
+
+    public Set<Ship> getShips() {
+        return ships;
+    }
+
+    public void setShips(Set<Ship> ships) {
+        this.ships = ships;
     }
 
     @Override

@@ -39,10 +39,12 @@
         <p:column style="width:2rem" exportable="false">
             <p:rowToggler/>
         </p:column>
-        <p:column toggleable="false" sortBy="#{owner.id}" filterBy="#{owner.id}" filterMatchMode="contains" headerText="ID">
+        <p:column toggleable="false" sortBy="#{owner.id}" filterBy="#{owner.id}" filterMatchMode="contains"
+                  headerText="ID">
             <h:outputText value="#{owner.id}"/>
         </p:column>
-        <p:column sortBy="#{owner.firstName}" filterBy="#{owner.firstName}" filterMatchMode="contains" headerText="Keresztnév">
+        <p:column sortBy="#{owner.firstName}" filterBy="#{owner.firstName}" filterMatchMode="contains"
+                  headerText="Keresztnév">
             <h:outputText value="#{owner.firstName}"/>
         </p:column>
         <p:column sortBy="#{owner.lastName}" filterBy="#{owner.lastName}" filterMatchMode="contains"
@@ -69,23 +71,36 @@
         </p:column>
         <p:rowExpansion>
             <div>
-               <!-- todo owner, autói, repcsijei és jhajói lástában-->
+                <!-- todo owner, autói, repcsijei és jhajói lástában-->
+                <ui:repeat value="#{owner.cars}" var="car">
+                    Autó #{car.id} #{car.licensePlateNumber}
+                </ui:repeat>
+                <br/>
+                <ui:repeat value="#{owner.ships}" var="ship">
+                    Hajó #{ship.id} #{ship.licensePlateNumber}
+                </ui:repeat>
+                <br/>
+                <ui:repeat value="#{owner.planes}" var="plane">
+                    Repcsi #{plane.id} #{plane.passengerNumber}
+                </ui:repeat>
             </div>
         </p:rowExpansion>
     </p:dataTable>
 
     <p:outputPanel id="formPanelHolder">
-        <p:panelGrid layout="grid" columns="2" id="formPanel" style="width:400px" rendered="#{ownerCRUDMbean.inFunction}">
+        <p:panelGrid layout="grid" columns="2" id="formPanel" style="width:400px"
+                     rendered="#{ownerCRUDMbean.inFunction}">
             <p:outputLabel value="Keresztnév"/>
             <p:inputText required="true" requiredMessage="Keresztnév kötelező"
                          value="#{ownerCRUDMbean.selectedOwner.firstName}"/>
 
             <p:outputLabel value="Vezetéknév"/>
-            <p:inputText required="true" requiredMessage="Vezetéknév kötelező" value="#{ownerCRUDMbean.selectedOwner.lastName}"/>
+            <p:inputText required="true" requiredMessage="Vezetéknév kötelező"
+                         value="#{ownerCRUDMbean.selectedOwner.lastName}"/>
 
             <p:outputLabel value="Regisztráció dátumna"/>
             <p:calendar required="true" requiredMessage="Regisztráció dátuma kötelező"
-                         value="#{ownerCRUDMbean.selectedOwner.registrationDate}"/>
+                        value="#{ownerCRUDMbean.selectedOwner.registrationDate}"/>
 
             <p:commandButton value="#{msg['app.save']}" icon="pi pi-save" actionListener="#{ownerCRUDMbean.save()}"
                              process="formPanel" update="@form">
