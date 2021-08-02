@@ -1,6 +1,8 @@
 package hu.ulyssys.java.course.javaee.demo.vehicle.mbean;
 
+import hu.ulyssys.java.course.javaee.demo.vehicle.entity.Owner;
 import hu.ulyssys.java.course.javaee.demo.vehicle.entity.Ship;
+import hu.ulyssys.java.course.javaee.demo.vehicle.service.OwnerService;
 import hu.ulyssys.java.course.javaee.demo.vehicle.service.ShipService;
 import org.primefaces.PrimeFaces;
 
@@ -20,13 +22,17 @@ public class ShipCRUDMbean implements Serializable {
     private List<Ship> list;
     private Ship selectedShip;
     private boolean inFunction;
+    private List<Owner> ownerList;
 
     @Inject
     private ShipService shipService;
+    @Inject
+    private OwnerService ownerService;
 
     @PostConstruct
     private void init() {
         list = shipService.getAll();
+        ownerList = ownerService.getAll();
         //Reflection
         selectedShip = new Ship();
     }
@@ -63,6 +69,14 @@ public class ShipCRUDMbean implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Sikeres törlés"));
         inFunction = false;
         selectedShip = new Ship();
+    }
+
+    public List<Owner> getOwnerList() {
+        return ownerList;
+    }
+
+    public void setOwnerList(List<Owner> ownerList) {
+        this.ownerList = ownerList;
     }
 
     public List<Ship> getList() {

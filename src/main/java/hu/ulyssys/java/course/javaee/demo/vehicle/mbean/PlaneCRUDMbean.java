@@ -1,6 +1,8 @@
 package hu.ulyssys.java.course.javaee.demo.vehicle.mbean;
 
+import hu.ulyssys.java.course.javaee.demo.vehicle.entity.Owner;
 import hu.ulyssys.java.course.javaee.demo.vehicle.entity.Plane;
+import hu.ulyssys.java.course.javaee.demo.vehicle.service.OwnerService;
 import hu.ulyssys.java.course.javaee.demo.vehicle.service.PlaneService;
 
 import javax.annotation.PostConstruct;
@@ -15,18 +17,21 @@ import java.util.List;
 @Named
 @ViewScoped
 public class PlaneCRUDMbean implements Serializable {
-
+    private List<Owner> ownerList;
     private List<Plane> list;
     private Plane selectedPlane;
     private boolean inFunction;
 
     @Inject
     private PlaneService planeService;
+    @Inject
+    private OwnerService ownerService;
 
     @PostConstruct
     private void init() {
         list = planeService.getAll();
         selectedPlane = new Plane();
+        ownerList = ownerService.getAll();
     }
 
     public void initSave() {
@@ -80,5 +85,13 @@ public class PlaneCRUDMbean implements Serializable {
 
     public boolean isInFunction() {
         return inFunction;
+    }
+
+    public List<Owner> getOwnerList() {
+        return ownerList;
+    }
+
+    public void setOwnerList(List<Owner> ownerList) {
+        this.ownerList = ownerList;
     }
 }

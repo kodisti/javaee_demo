@@ -72,6 +72,10 @@
                   headerText="Rendszáma">
             <h:outputText value="#{ship.licensePlateNumber}"/>
         </p:column>
+        <p:column sortBy="#{ship.owner.id}" filterBy="#{ship.owner.id}" filterMatchMode="contains"
+                  headerText="Tulajdonos">
+            <h:outputText value="#{ship.owner.lastName} #{ship.owner.firstName}"/>
+        </p:column>
         <p:rowExpansion>
             <div>
                 A jármű típusa: #{ship.vehicleType}
@@ -102,6 +106,10 @@
                          value="#{shipCRUDMbean.selectedShip.licensePlateNumber}"/>
             <p:outputLabel value="Ajtók száma"/>
 
+            <p:selectOneMenu value="#{shipCRUDMbean.selectedShip.owner}" converter="#{appOwnerConverter}" >
+                <f:selectItem itemValue="#{null}" itemLabel="Kérem válasszon"/>
+                <f:selectItems value="#{shipCRUDMbean.ownerList}" var="owner" itemLabel="#{owner.firstName}" itemValue="#{owner}"/>
+            </p:selectOneMenu>
             <p:commandButton value="Mentés" icon="pi pi-save" actionListener="#{shipCRUDMbean.save()}"
                              validateClient="true"
                              process="formPanel" update=":form">

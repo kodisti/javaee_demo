@@ -70,6 +70,10 @@
                   headerText="Utasok száma">
             <h:outputText value="#{plane.passengerNumber}"/>
         </p:column>
+        <p:column sortBy="#{plane.owner.id}" filterBy="#{plane.owner.id}" filterMatchMode="contains"
+                  headerText="Tulajdonos">
+            <h:outputText value="#{plane.owner.lastName} #{plane.owner.firstName}"/>
+        </p:column>
         <p:rowExpansion>
             <div>
                 A jármű típusa: #{plane.vehicleType}
@@ -91,8 +95,13 @@
             <p:inputNumber thousandSeparator="" decimalPlaces="0" required="true" requiredMessage="Utasok száma"
                            value="#{planeCRUDMbean.selectedPlane.passengerNumber}"/>
 
-            <p:outputLabel value="Ajtók száma"/>
+            <p:outputLabel value="Tulajdonos"/>
+            <p:selectOneMenu value="#{planeCRUDMbean.selectedPlane.owner}" converter="#{appOwnerConverter}" >
+                <f:selectItem itemValue="#{null}" itemLabel="Kérem válasszon"/>
+                <f:selectItems value="#{planeCRUDMbean.ownerList}" var="owner" itemLabel="#{owner.firstName}" itemValue="#{owner}"/>
+            </p:selectOneMenu>
 
+            <p:outputLabel value="Ajtók száma"/>
             <p:commandButton value="Mentés" icon="pi pi-save" actionListener="#{planeCRUDMbean.save()}"
                              process="formPanel" update="@form">
             </p:commandButton>
