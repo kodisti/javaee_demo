@@ -1,8 +1,6 @@
 package hu.ulyssys.java.course.javaee.demo.vehicle.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table
@@ -12,6 +10,9 @@ public class Car extends AbstractVehicle {
     private String licensePlateNumber;
     @Column(name = "door_numbers")
     private int doorNumbers;
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
+    private Owner owner;
 
     //erre csak akkor van szükség, ha van olyan konsttuktor, aminek van bemenő paramétere. Ez az üres konstruktor
     public Car() {
@@ -39,8 +40,18 @@ public class Car extends AbstractVehicle {
         this.doorNumbers = doorNumbers;
     }
 
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
+
     @Override
     public VehicleType getVehicleType() {
         return VehicleType.CAR;
     }
+
+
 }

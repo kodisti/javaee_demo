@@ -91,6 +91,12 @@
             <p:inputNumber required="true" requiredMessage="Ajtók száma kötelező" thousandSeparator="" decimalPlaces="0"
                            value="#{carCRUDMbean.selectedCar.doorNumbers}"/>
 
+            <p:outputLabel value="Tulajdonos"/>
+            <p:selectOneMenu value="#{carCRUDMbean.selectedCarOwnerId}"  >
+                <f:selectItem itemValue="#{null}" itemLabel="Kérem válasszon"/>
+                <f:selectItems value="#{carCRUDMbean.ownerList}" var="owner" itemLabel="#{owner.firstName} #{owner.lastName} #{owner.id}" itemValue="#{owner.id}"/>
+            </p:selectOneMenu>
+
             <p:commandButton value="#{msg['app.save']}" icon="pi pi-save" actionListener="#{carCRUDMbean.save()}"
                              process="formPanel" update="@form">
             </p:commandButton>

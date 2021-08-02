@@ -13,4 +13,6 @@ public interface OwnerService {
     void remove(Owner entity);
 
     void update(Owner entity);
+
+    Owner findById(Long id);
 }

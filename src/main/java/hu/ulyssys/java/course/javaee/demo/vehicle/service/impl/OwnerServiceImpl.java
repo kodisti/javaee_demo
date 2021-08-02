@@ -36,4 +36,9 @@ public class OwnerServiceImpl implements OwnerService {
     public void update(Owner entity) {
         dao.update(entity);
     }
+
+    @Override
+    public Owner findById(Long id) {
+        return dao.findById(id);
+    }
 }
