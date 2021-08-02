@@ -48,4 +48,26 @@ public class Owner {
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Owner owner = (Owner) o;
+
+        if (id != null ? !id.equals(owner.id) : owner.id != null) return false;
+        if (lastName != null ? !lastName.equals(owner.lastName) : owner.lastName != null) return false;
+        if (firstName != null ? !firstName.equals(owner.firstName) : owner.firstName != null) return false;
+        return registrationDate != null ? registrationDate.equals(owner.registrationDate) : owner.registrationDate == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+        result = 31 * result + (registrationDate != null ? registrationDate.hashCode() : 0);
+        return result;
+    }
 }

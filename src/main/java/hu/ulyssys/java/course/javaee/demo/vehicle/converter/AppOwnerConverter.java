@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Named
 @ApplicationScoped
-public class OwnerConverter implements Converter {
+public class AppOwnerConverter implements Converter {
 
     @Inject
     private OwnerService ownerService;
@@ -23,21 +23,16 @@ public class OwnerConverter implements Converter {
         if (s == null) {
             return null;
         }
-        String[] params = s.split(" ");
-        if (params.length != 3) {
-            return null;
-        }
-        Optional<Owner> optionalOwner = ownerService.getAll().stream().filter(owner -> owner.getId().equals(Long.parseLong(params[2]))
-        ).findFirst();
-        return optionalOwner.get();
+        return ownerService.getAll().stream().filter(owner -> owner.getFirstName().equals(s)
+        ).findFirst().orElse(null);
     }
 
     @Override
     public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object o) {
         if (o instanceof Owner) {
-            return ((Owner) o).getFirstName() + " " + ((Owner) o).getLastName() + " " + ((Owner) o).getId() + "";
+            return ((Owner) o).getFirstName();
         }
-        if(o instanceof String){
+        if (o instanceof String) {
             return o.toString();
         }
         return null;
