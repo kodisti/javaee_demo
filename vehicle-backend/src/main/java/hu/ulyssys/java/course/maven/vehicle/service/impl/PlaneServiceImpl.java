@@ -25,6 +25,7 @@ public class PlaneServiceImpl implements PlaneService {
         return dao.findAll();
     }
 
+    @TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
     @Override
     public List<Plane> getAllByOwnerId(Long owner_id) {
         return dao.findAllByOwnerId(owner_id);

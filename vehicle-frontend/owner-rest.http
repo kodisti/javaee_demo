@@ -2,7 +2,7 @@ POST http://localhost:8080/api/owner
 Content-Type: application/json
 
 {
-  "firstName": "Attila",
+  "firstName": "Papa",
   "lastName": "Papucs"
 }
 
@@ -12,9 +12,9 @@ PUT http://localhost:8080/api/owner
 Content-Type: application/json
 
 {
-  "id": 1,
+  "id": 6,
   "firstName": "Attila",
-  "lastName": "Papucs"
+  "lastName": "Papucska"
 }
 
 ###
@@ -23,12 +23,12 @@ Accept: application/json
 
 ###
 
-GET http://localhost:8080/api/owner/data/1
+GET http://localhost:8080/api/owner/data/4
 Accept: application/json
 
 ###
 
-DELETE http://localhost:8080/api/owner/5
+DELETE http://localhost:8080/api/owner/6
 Accept: application/json
 
 ###

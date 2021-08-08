@@ -15,7 +15,7 @@ PUT http://localhost:8080/api/car
 Content-Type: application/json
 
 {
-  "id": 1,
+  "id": 7,
   "manufacturer": "Mercedes",
   "type": "M3",
   "licensePlateNumber": "xyz-123",
@@ -29,17 +29,17 @@ Accept: application/json
 
 ###
 
-GET http://localhost:8080/api/car/1
+GET http://localhost:8080/api/car/5
 Accept: application/json
 
 ###
 
-GET http://localhost:8080/api/car/owner_id/1
+GET http://localhost:8080/api/car/owner_id/4
 Accept: application/json
 
 ###
 
-DELETE http://localhost:8080/api/car/6
+DELETE http://localhost:8080/api/car/7
 Accept: application/json
 
 ###

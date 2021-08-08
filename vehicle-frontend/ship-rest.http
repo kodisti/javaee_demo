@@ -14,7 +14,7 @@ PUT http://localhost:8080/api/ship
 Content-Type: application/json
 
 {
-  "id": 6,
+  "id": 7,
   "manufacturer": "Jane",
   "type": "Joker",
   "licensePlateNumber": "xyz-666",
@@ -27,17 +27,17 @@ Accept: application/json
 
 ###
 
-GET http://localhost:8080/api/ship/6
+GET http://localhost:8080/api/ship/10
 Accept: application/json
 
 ###
 
-GET http://localhost:8080/api/ship/owner_id/3
+GET http://localhost:8080/api/ship/owner_id/2
 Accept: application/json
 
 ###
 
-DELETE http://localhost:8080/api/ship/4
+DELETE http://localhost:8080/api/ship/7
 Accept: application/json
 
 ###

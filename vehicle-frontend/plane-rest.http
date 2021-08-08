@@ -14,7 +14,7 @@ PUT http://localhost:8080/api/plane
 Content-Type: application/json
 
 {
-  "id": 6,
+  "id": 7,
   "manufacturer": "Turbo Jet",
   "type": "vadászgép",
   "passengerNumber": 20,
@@ -27,17 +27,17 @@ Accept: application/json
 
 ###
 
-GET http://localhost:8080/api/plane/10
+GET http://localhost:8080/api/plane/7
 Accept: application/json
 
 ###
 
-GET http://localhost:8080/api/plane/owner_id/3
+GET http://localhost:8080/api/plane/owner_id/1
 Accept: application/json
 
 ###
 
-DELETE http://localhost:8080/api/plane/6
+DELETE http://localhost:8080/api/plane/7
 Accept: application/json
 
 ###
