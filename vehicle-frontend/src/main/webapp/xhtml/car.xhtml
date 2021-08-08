@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
+      xml:lang="en" lang="en">
+<h:head>
+    <title>CAR demo</title>
+</h:head>
+<body>
+<h:form id="form">
+    <ui:include src="appMenu.xhtml"/>
+    <p:growl id="growl" showDetail="false"/>
+
+    <p:commandButton id="add" icon="pi pi-plus" process="@this" value="Új hozzáadása"
+                     actionListener="#{carCRUDMbean.initSave}" update="@form"/>
+    <p:commandButton id="columntTogglerBtn" icon="pi pi-table"/>
+    <p:columnToggler trigger="columntTogglerBtn" datasource="table"/>
+
+    <p:commandButton value="XLS" styleClass="p-mr-2 p-mb-2">
+        <p:dataExporter type="xls" target="table" fileName="export"/>
+    </p:commandButton>
+
+    <p:commandButton value="XLXS" styleClass="p-mr-2 p-mb-2">
+        <p:dataExporter type="xlsxstream" target="table" fileName="export"/>
+    </p:commandButton>
+
+    <!-- TODO Utf-8 karakter -->
+    <p:commandButton value="PDF" styleClass="p-mr-2 p-mb-2">
+        <p:dataExporter type="pdf" target="table" fileName="export"/>
+    </p:commandButton>
+
+    <p:dataTable id="table" value="#{carCRUDMbean.list}" var="car" rows="10"
+                 paginator="true"
+                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records"
+                 rowsPerPageTemplate="5,10,{ShowAll|'All'}">
+        <p:column style="width:2rem" exportable="false">
+            <p:rowToggler/>
+        </p:column>
+        <p:column toggleable="false" sortBy="#{car.id}" filterBy="#{car.id}" filterMatchMode="contains" headerText="ID">
+            <h:outputText value="#{car.id}"/>
+        </p:column>
+        <p:column sortBy="#{car.type}" filterBy="#{car.type}" filterMatchMode="contains" headerText="Típus">
+            <h:outputText value="#{car.type}"/>
+        </p:column>
+        <p:column sortBy="#{car.manufacturer}" filterBy="#{car.manufacturer}" filterMatchMode="contains"
+                  headerText="Gyártó">
+            <h:outputText value="#{car.manufacturer}"/>
+        </p:column>
+        <p:column sortBy="#{car.doorNumbers}" filterBy="#{car.doorNumbers}" filterMatchMode="contains"
+                  headerText="Ajtók száma">
+            <h:outputText value="#{car.doorNumbers}"/>
+        </p:column>
+        <p:column sortBy="#{car.licensePlateNumber}" filterBy="#{car.licensePlateNumber}" filterMatchMode="contains"
+                  headerText="Rendszám">
+            <h:outputText value="#{car.licensePlateNumber}"/>
+        </p:column>
+        <p:column sortBy="#{car.owner.id}" filterBy="#{car.owner.id}" filterMatchMode="contains"
+                  headerText="Tulajdonos">
+            <h:outputText value="#{car.owner.lastName} #{car.owner.firstName}"/>
+        </p:column>
+        <p:column headerText="Funkció gombok" exportable="false">
+            <p:commandButton id="delete" icon="pi pi-times" process="@this" value="Törlés"
+                             actionListener="#{carCRUDMbean.remove(car)}"
+                             update="@form">
+                <p:confirm header="Törlés" message="Biztos vagy benne?" icon="pi pi-times"/>
+            </p:commandButton>
+            <!-- Hákolt, de müködő megoldás @([id$=formPanel]) -->
+            <p:commandButton id="update" process="@this" value="Módosítás" icon="pi pi-pencil"
+                             actionListener="#{carCRUDMbean.initEdit(car)}" update=":form:formPanelHolder"/>
+        </p:column>
+        <p:rowExpansion>
+            <div>
+                A jármű típusa: #{car.vehicleType}
+            </div>
+        </p:rowExpansion>
+    </p:dataTable>
+
+    <p:outputPanel id="formPanelHolder">
+        <p:panelGrid layout="grid" columns="2" id="formPanel" style="width:400px" rendered="#{carCRUDMbean.inFunction}">
+            <p:outputLabel value="Gyártó"/>
+            <p:inputText required="true" requiredMessage="Gyártó kötelező"
+                         value="#{carCRUDMbean.selectedCar.manufacturer}"/>
+
+            <p:outputLabel value="Típus"/>
+            <p:inputText required="true" requiredMessage="Típus kötelező" value="#{carCRUDMbean.selectedCar.type}"/>
+
+            <p:outputLabel value="Rendszám"/>
+            <p:inputText required="true" requiredMessage="Rendszám kötelező"
+                         value="#{carCRUDMbean.selectedCar.licensePlateNumber}"/>
+
+            <p:outputLabel value="Ajtók száma"/>
+            <p:inputNumber required="true" requiredMessage="Ajtók száma kötelező" thousandSeparator="" decimalPlaces="0"
+                           value="#{carCRUDMbean.selectedCar.doorNumbers}"/>
+
+            <p:outputLabel value="Tulajdonos"/>
+            <p:selectOneMenu value="#{carCRUDMbean.selectedCarOwnerId}"  converter="#{appOwnerConverter}">
+                <f:selectItem itemValue="#{null}" itemLabel="Kérem válasszon"/>
+                <f:selectItems value="#{carCRUDMbean.ownerList}" var="owner" itemLabel="#{owner.firstName} #{owner.lastName} #{owner.id}" itemValue="#{owner.id}"/>
+            </p:selectOneMenu>
+
+            <p:commandButton value="#{msg['app.save']}" icon="pi pi-save" actionListener="#{carCRUDMbean.save()}"
+                             process="formPanel" update="@form">
+            </p:commandButton>
+        </p:panelGrid>
+    </p:outputPanel>
+
+
+    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+        <p:commandButton value="#{msg['no.label']}" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+        <p:commandButton value="#{msg['yes.label']}" type="button" styleClass="ui-confirmdialog-yes"/>
+    </p:confirmDialog>
+    <!-- űrlap, új felvitelre is, és ezt használni módosítás-->
+
+    <!-- 2. inplace edit plane-en -->
+    <!-- 3. Felugró ablakos űrlapot külön formmal -->
+    <!-- 4. nyelvesítés-->
+</h:form>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+POST http://localhost:8080/api/cat
+Content-Type: application/json
+
+{
+  "name": "rénszarvi",
+  "legsNumber": 100,
+  "hornNumber": 17,
+  "alma": "körte",
+  "farmerID": 1
+}
+
+###
+
+PUT http://localhost:8080/api/cat
+Content-Type: application/json
+
+{
+  "id": 14,
+  "name": "Fecske",
+  "legsNumber": 14,
+  "hornNumber": 17,
+  "alma": "körte",
+  "farmerID": 1
+}
+
+###
+GET http://localhost:8080/api/cat
+Accept: application/json
+
+###
+
+DELETE http://localhost:8080/api/cat/13
+Accept: application/json
+
+###
+
