@@ -1,9 +1,9 @@
-package hu.ulyssys.java.course.javaee.demo.vehicle.mbean;
+package hu.ulyssys.java.course.maven.mbean;
 
 import hu.ulyssys.java.course.maven.vehicle.entity.Owner;
 import hu.ulyssys.java.course.maven.vehicle.entity.Ship;
-import hu.ulyssys.java.course.maven.vehicle.entity.service.OwnerService;
-import hu.ulyssys.java.course.maven.vehicle.entity.service.ShipService;
+import hu.ulyssys.java.course.maven.vehicle.service.OwnerService;
+import hu.ulyssys.java.course.maven.vehicle.service.ShipService;
 import org.primefaces.PrimeFaces;
 
 import javax.annotation.PostConstruct;

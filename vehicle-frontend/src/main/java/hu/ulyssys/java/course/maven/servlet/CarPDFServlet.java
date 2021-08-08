@@ -1,6 +1,6 @@
-package hu.ulyssys.java.course.javaee.demo.servlet;
+package hu.ulyssys.java.course.maven.servlet;
 
-import hu.ulyssys.java.course.maven.vehicle.entity.service.PDFExportService;
+import hu.ulyssys.java.course.maven.vehicle.service.PDFExportService;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;

@@ -1,4 +1,4 @@
-package hu.ulyssys.java.course.javaee.demo.servlet;
+package hu.ulyssys.java.course.maven.servlet;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

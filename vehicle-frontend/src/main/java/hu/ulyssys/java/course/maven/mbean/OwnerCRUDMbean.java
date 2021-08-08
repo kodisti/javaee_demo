@@ -1,7 +1,7 @@
-package hu.ulyssys.java.course.javaee.demo.vehicle.mbean;
+package hu.ulyssys.java.course.maven.mbean;
 
 import hu.ulyssys.java.course.maven.vehicle.entity.Owner;
-import hu.ulyssys.java.course.maven.vehicle.entity.service.OwnerService;
+import hu.ulyssys.java.course.maven.vehicle.service.OwnerService;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;

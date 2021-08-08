@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="vehicle-backend" />
+        <module name="vehicle-ear" />
+        <module name="vehicle-frontend" />
+        <module name="javaee_demo" />
+        <module name="vehicle-export-backend" />
+        <module name="vehicle-api" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="javaee-demo" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

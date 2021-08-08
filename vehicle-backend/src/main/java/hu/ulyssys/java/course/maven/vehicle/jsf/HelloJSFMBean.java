@@ -1,4 +1,4 @@
-package hu.ulyssys.java.course.javaee.demo.jsf;
+package hu.ulyssys.java.course.maven.vehicle.jsf;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;

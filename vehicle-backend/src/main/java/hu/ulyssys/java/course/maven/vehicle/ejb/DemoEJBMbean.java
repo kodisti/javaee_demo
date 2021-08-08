@@ -1,4 +1,4 @@
-package hu.ulyssys.java.course.javaee.demo.ejb;
+package hu.ulyssys.java.course.maven.vehicle.ejb;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;

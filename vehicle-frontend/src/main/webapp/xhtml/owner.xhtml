@@ -6,7 +6,7 @@
       xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
       xml:lang="en" lang="en">
 <h:head>
-    <title>CAR demo</title>
+    <title>Owner demo</title>
 </h:head>
 <body>
 <h:form id="form">
@@ -102,7 +102,7 @@
             <p:calendar required="true" requiredMessage="Regisztráció dátuma kötelező"
                         value="#{ownerCRUDMbean.selectedOwner.registrationDate}"/>
 
-            <p:commandButton value="#{msg['app.save']}" icon="pi pi-save" actionListener="#{ownerCRUDMbean.save()}"
+            <p:commandButton value="Mentés" icon="pi pi-save" actionListener="#{ownerCRUDMbean.save()}"
                              process="formPanel" update="@form">
             </p:commandButton>
         </p:panelGrid>
@@ -110,8 +110,8 @@
 
 
     <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
-        <p:commandButton value="#{msg['no.label']}" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
-        <p:commandButton value="#{msg['yes.label']}" type="button" styleClass="ui-confirmdialog-yes"/>
+        <p:commandButton value="Nem" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+        <p:commandButton value="Igen" type="button" styleClass="ui-confirmdialog-yes"/>
     </p:confirmDialog>
     <!-- űrlap, új felvitelre is, és ezt használni módosítás-->
 

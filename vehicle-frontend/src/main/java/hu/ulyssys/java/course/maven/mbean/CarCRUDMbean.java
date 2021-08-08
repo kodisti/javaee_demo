@@ -1,9 +1,9 @@
-package hu.ulyssys.java.course.javaee.demo.vehicle.mbean;
+package hu.ulyssys.java.course.maven.mbean;
 
 import hu.ulyssys.java.course.maven.vehicle.entity.Car;
 import hu.ulyssys.java.course.maven.vehicle.entity.Owner;
-import hu.ulyssys.java.course.maven.vehicle.entity.service.CarService;
-import hu.ulyssys.java.course.maven.vehicle.entity.service.OwnerService;
+import hu.ulyssys.java.course.maven.vehicle.service.CarService;
+import hu.ulyssys.java.course.maven.vehicle.service.OwnerService;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -77,7 +77,6 @@ public class CarCRUDMbean implements Serializable {
         carService.remove(car);
         list = carService.getAll();
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Sikeres törlés"));
-
     }
 
     public List<Owner> getOwnerList() {

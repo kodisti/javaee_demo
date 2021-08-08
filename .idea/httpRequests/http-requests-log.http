@@ -1,0 +1,369 @@
+GET http://localhost:8080/api/owner/data/1
+Accept: application/json
+
+<> 2021-08-08T225210.200.json
+
+###
+
+GET http://localhost:8080/api/owner/data/10
+Accept: application/json
+
+<> 2021-08-08T225205.500.html
+
+###
+
+GET http://localhost:8080/api/owner
+Accept: application/json
+
+<> 2021-08-08T225158.200.json
+
+###
+
+DELETE http://localhost:8080/api/owner/5
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/owner
+Accept: application/json
+
+<> 2021-08-08T225147.200.json
+
+###
+
+POST http://localhost:8080/api/owner
+Content-Type: application/json
+
+{
+  "firstName": "Attila",
+  "lastName": "Papucs"
+}
+
+<> 2021-08-08T225144.200.json
+
+###
+
+GET http://localhost:8080/api/owner
+Accept: application/json
+
+<> 2021-08-08T225135.200.json
+
+###
+
+DELETE http://localhost:8080/api/owner/5
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/owner/data/1
+Accept: application/json
+
+<> 2021-08-08T225125.200.json
+
+###
+
+GET http://localhost:8080/api/owner/data/2
+Accept: application/json
+
+<> 2021-08-08T225120.200.json
+
+###
+
+GET http://localhost:8080/api/owner
+Accept: application/json
+
+<> 2021-08-08T225116.200.json
+
+###
+
+GET http://localhost:8080/api/owner/data/2
+Accept: application/json
+
+<> 2021-08-08T225029.200.json
+
+###
+
+GET http://localhost:8080/api/owner/data/5
+Accept: application/json
+
+<> 2021-08-08T224956.500.html
+
+###
+
+GET http://localhost:8080/api/owner/data/5
+Accept: application/json
+
+<> 2021-08-08T224339.500.html
+
+###
+
+GET http://localhost:8080/api/owner/data/4
+Accept: application/json
+
+<> 2021-08-08T224336.500.html
+
+###
+
+GET http://localhost:8080/api/owner/data/1
+Accept: application/json
+
+<> 2021-08-08T224329.200.json
+
+###
+
+GET http://localhost:8080/api/owner/data/4
+Accept: application/json
+
+<> 2021-08-08T224325.500.html
+
+###
+
+GET http://localhost:8080/api/owner/data/4
+Accept: application/json
+
+<> 2021-08-08T224250.500.html
+
+###
+
+GET http://localhost:8080/api/owner/data/2
+Accept: application/json
+
+<> 2021-08-08T224244.200.json
+
+###
+
+GET http://localhost:8080/api/owner/data/3
+Accept: application/json
+
+<> 2021-08-08T224240.200.json
+
+###
+
+GET http://localhost:8080/api/owner
+Accept: application/json
+
+<> 2021-08-08T224235.200.json
+
+###
+
+GET http://localhost:8080/api/owner/data/4
+Accept: application/json
+
+<> 2021-08-08T224230.500.html
+
+###
+
+GET http://localhost:8080/api/owner
+Accept: application/json
+
+<> 2021-08-08T224227.200.json
+
+###
+
+GET http://localhost:8080/api/owner
+Accept: application/json
+
+<> 2021-08-08T224220.404.html
+
+###
+
+GET http://localhost:8080/api/owner/data/4
+Accept: application/json
+
+<> 2021-08-08T223842.500.html
+
+###
+
+GET http://localhost:8080/api/owner
+Accept: application/json
+
+<> 2021-08-08T223838.200.json
+
+###
+
+GET http://localhost:8080/api/owner/data/4
+Accept: application/json
+
+<> 2021-08-08T223620.500.html
+
+###
+
+DELETE http://localhost:8080/api/ship/4
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/ship/owner_id/3
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/ship/owner_id/2
+Accept: application/json
+
+<> 2021-08-08T223605.200.json
+
+###
+
+GET http://localhost:8080/api/ship/owner_id/1
+Accept: application/json
+
+<> 2021-08-08T223600.200.json
+
+###
+
+GET http://localhost:8080/api/ship/6
+Accept: application/json
+
+<> 2021-08-08T223557.200.json
+
+###
+
+GET http://localhost:8080/api/ship/1
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/ship
+Accept: application/json
+
+<> 2021-08-08T223545.200.json
+
+###
+
+PUT http://localhost:8080/api/ship
+Content-Type: application/json
+
+{
+  "id": 6,
+  "manufacturer": "Jane",
+  "type": "Joker",
+  "licensePlateNumber": "xyz-666",
+  "ownerID": 2
+}
+
+<> 2021-08-08T223543.200.json
+
+###
+
+GET http://localhost:8080/api/ship
+Accept: application/json
+
+<> 2021-08-08T223533.200.json
+
+###
+
+POST http://localhost:8080/api/ship
+Content-Type: application/json
+
+{
+  "manufacturer": "Jenny",
+  "type": "Joker",
+  "licensePlateNumber": "xyz-555",
+  "ownerID": 1
+}
+
+<> 2021-08-08T223531.200.json
+
+###
+
+GET http://localhost:8080/api/ship
+Accept: application/json
+
+<> 2021-08-08T223528.200.json
+
+###
+
+DELETE http://localhost:8080/api/plane/6
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/plane/owner_id/3
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/plane/owner_id/2
+Accept: application/json
+
+<> 2021-08-08T223506.200.json
+
+###
+
+GET http://localhost:8080/api/plane/owner_id/1
+Accept: application/json
+
+<> 2021-08-08T223501.200.json
+
+###
+
+GET http://localhost:8080/api/plane/10
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/plane/3
+Accept: application/json
+
+<> 2021-08-08T223453.200.json
+
+###
+
+GET http://localhost:8080/api/plane
+Accept: application/json
+
+<> 2021-08-08T223449.200.json
+
+###
+
+PUT http://localhost:8080/api/plane
+Content-Type: application/json
+
+{
+  "id": 6,
+  "manufacturer": "Turbo Jet",
+  "type": "vadászgép",
+  "passengerNumber": 20,
+  "ownerID": 2
+}
+
+<> 2021-08-08T223448.200.json
+
+###
+
+GET http://localhost:8080/api/plane
+Accept: application/json
+
+<> 2021-08-08T223432.200.json
+
+###
+
+POST http://localhost:8080/api/plane
+Content-Type: application/json
+
+{
+  "manufacturer": "Jet",
+  "type": "vadászgép",
+  "passengerNumber": 100,
+  "ownerID": 1
+}
+
+<> 2021-08-08T223429.200.json
+
+###
+
+GET http://localhost:8080/api/owner/data/4
+Accept: application/json
+
+<> 2021-08-08T223416.500.html
+
+###
+
+GET http://localhost:8080/api/owner/data/3
+Accept: application/json
+
+<> 2021-08-08T223409.200.json
+
+###
+

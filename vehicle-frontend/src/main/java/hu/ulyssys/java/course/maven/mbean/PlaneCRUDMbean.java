@@ -1,9 +1,9 @@
-package hu.ulyssys.java.course.javaee.demo.vehicle.mbean;
+package hu.ulyssys.java.course.maven.mbean;
 
 import hu.ulyssys.java.course.maven.vehicle.entity.Owner;
 import hu.ulyssys.java.course.maven.vehicle.entity.Plane;
-import hu.ulyssys.java.course.maven.vehicle.entity.service.OwnerService;
-import hu.ulyssys.java.course.maven.vehicle.entity.service.PlaneService;
+import hu.ulyssys.java.course.maven.vehicle.service.OwnerService;
+import hu.ulyssys.java.course.maven.vehicle.service.PlaneService;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;

@@ -1,35 +1,43 @@
-POST http://localhost:8080/api/car
+POST http://localhost:8080/api/plane
 Content-Type: application/json
 
 {
-  "manufacturer": "Mercedes",
-  "type": "Benz",
-  "licensePlateNumber": "xyz-987",
-  "doorNumbers": 5,
+  "manufacturer": "Jet",
+  "type": "vadászgép",
+  "passengerNumber": 100,
   "ownerID": 1
 }
 
 ###
 
-PUT http://localhost:8080/api/car
+PUT http://localhost:8080/api/plane
 Content-Type: application/json
 
 {
-  "id": 1,
-  "manufacturer": "Mercedes",
-  "type": "M3",
-  "licensePlateNumber": "xyz-987",
-  "doorNumbers": 2,
-  "ownerID": 1
+  "id": 6,
+  "manufacturer": "Turbo Jet",
+  "type": "vadászgép",
+  "passengerNumber": 20,
+  "ownerID": 2
 }
 
 ###
-GET http://localhost:8080/api/car
+GET http://localhost:8080/api/plane
 Accept: application/json
 
 ###
 
-DELETE http://localhost:8080/api/car/3
+GET http://localhost:8080/api/plane/10
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/plane/owner_id/3
+Accept: application/json
+
+###
+
+DELETE http://localhost:8080/api/plane/6
 Accept: application/json
 
 ###

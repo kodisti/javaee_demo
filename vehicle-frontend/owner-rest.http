@@ -1,35 +1,34 @@
-POST http://localhost:8080/api/car
+POST http://localhost:8080/api/owner
 Content-Type: application/json
 
 {
-  "manufacturer": "Mercedes",
-  "type": "Benz",
-  "licensePlateNumber": "xyz-987",
-  "doorNumbers": 5,
-  "ownerID": 1
+  "firstName": "Attila",
+  "lastName": "Papucs"
 }
 
 ###
 
-PUT http://localhost:8080/api/car
+PUT http://localhost:8080/api/owner
 Content-Type: application/json
 
 {
   "id": 1,
-  "manufacturer": "Mercedes",
-  "type": "M3",
-  "licensePlateNumber": "xyz-987",
-  "doorNumbers": 2,
-  "ownerID": 1
+  "firstName": "Attila",
+  "lastName": "Papucs"
 }
 
 ###
-GET http://localhost:8080/api/car
+GET http://localhost:8080/api/owner
 Accept: application/json
 
 ###
 
-DELETE http://localhost:8080/api/car/3
+GET http://localhost:8080/api/owner/data/1
+Accept: application/json
+
+###
+
+DELETE http://localhost:8080/api/owner/5
 Accept: application/json
 
 ###

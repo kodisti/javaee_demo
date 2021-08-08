@@ -1,7 +1,6 @@
-package hu.ulyssys.java.course.javaee.demo.ejb;
+package hu.ulyssys.java.course.maven.vehicle.ejb;
 
 import javax.ejb.Singleton;
-import javax.ejb.Stateful;
 
 @Singleton
 public class DemoSingletonBean {

@@ -1,7 +1,7 @@
-package hu.ulyssys.java.course.javaee.demo.vehicle.converter;
+package hu.ulyssys.java.course.maven.converter;
 
 import hu.ulyssys.java.course.maven.vehicle.entity.Owner;
-import hu.ulyssys.java.course.maven.vehicle.entity.service.OwnerService;
+import hu.ulyssys.java.course.maven.vehicle.service.OwnerService;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.component.UIComponent;

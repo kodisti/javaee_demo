@@ -1,7 +1,7 @@
-package hu.ulyssys.java.course.javaee.demo.servlet;
+package hu.ulyssys.java.course.maven.servlet;
 
 import hu.ulyssys.java.course.maven.vehicle.entity.Car;
-import hu.ulyssys.java.course.maven.vehicle.entity.service.CarService;
+import hu.ulyssys.java.course.maven.vehicle.service.CarService;
 
 import javax.inject.Inject;
 import javax.servlet.ServletException;

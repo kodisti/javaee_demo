@@ -1,35 +1,45 @@
-POST http://localhost:8080/api/cat
+POST http://localhost:8080/api/car
 Content-Type: application/json
 
 {
-  "name": "rénszarvi",
-  "legsNumber": 100,
-  "hornNumber": 17,
-  "alma": "körte",
-  "farmerID": 1
+  "manufacturer": "Mercedes",
+  "type": "Benz",
+  "licensePlateNumber": "xyz-321",
+  "doorNumbers": 5,
+  "ownerID": 1
 }
 
 ###
 
-PUT http://localhost:8080/api/cat
+PUT http://localhost:8080/api/car
 Content-Type: application/json
 
 {
-  "id": 14,
-  "name": "Fecske",
-  "legsNumber": 14,
-  "hornNumber": 17,
-  "alma": "körte",
-  "farmerID": 1
+  "id": 1,
+  "manufacturer": "Mercedes",
+  "type": "M3",
+  "licensePlateNumber": "xyz-123",
+  "doorNumbers": 2,
+  "ownerID": 2
 }
 
 ###
-GET http://localhost:8080/api/cat
+GET http://localhost:8080/api/car
 Accept: application/json
 
 ###
 
-DELETE http://localhost:8080/api/cat/13
+GET http://localhost:8080/api/car/1
+Accept: application/json
+
+###
+
+GET http://localhost:8080/api/car/owner_id/1
+Accept: application/json
+
+###
+
+DELETE http://localhost:8080/api/car/6
 Accept: application/json
 
 ###
